@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import ru.netology.web.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TopUpPage {
@@ -18,6 +19,14 @@ public class TopUpPage {
         from.setValue(String.valueOf(cardNumber));
         button.click();
         return new DashboardPage();
+    }
+
+    public boolean getErrorMessage() {
+        boolean result = false;
+        if ($(withText("Недостаточно средств. Пополните баланс.")).exists()) {
+            result = true;
+        }
+        return result;
     }
 
 

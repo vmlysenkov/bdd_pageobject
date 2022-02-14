@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.LoginPage;
+import ru.netology.web.page.TopUpPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MoneyTransferTest {
 
@@ -45,5 +47,21 @@ public class MoneyTransferTest {
         topUpPage.topUpAccount(sum, cardNumber);
         assertEquals(firstCardBalance - Integer.parseInt(sum), dashboardPage.getFirstCardBalance());
         assertEquals(secondCardBalance + Integer.parseInt(sum), dashboardPage.getSecondCardBalance());
+    }
+
+    @Test
+    void shouldNotTopUpFirstCard() {
+        var dashboardPage = new DashboardPage();
+        int firstCardBalance = dashboardPage.getFirstCardBalance();
+        int secondCardBalance = dashboardPage.getSecondCardBalance();
+        var topUpPage = dashboardPage.firstTopUpButton();
+        var cardNumber = DataHelper.getSecondCardNumber();
+        String sum = "20000";
+        topUpPage.topUpAccount(sum, cardNumber);
+        var topUp = new TopUpPage();
+        var errorMessage = topUp.getErrorMessage();
+        assertTrue(errorMessage, String.valueOf(true));
+        assertEquals(firstCardBalance, dashboardPage.getFirstCardBalance());
+        assertEquals(secondCardBalance, dashboardPage.getSecondCardBalance());
     }
 }
