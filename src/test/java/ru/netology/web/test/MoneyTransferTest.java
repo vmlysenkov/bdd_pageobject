@@ -28,7 +28,7 @@ public class MoneyTransferTest {
         int secondCardBalance = dashboardPage.getSecondCardBalance();
         var topUpPage = dashboardPage.firstTopUpButton();
         var cardNumber = DataHelper.getSecondCardNumber();
-        String sum = "21000";
+        String sum = "1000";
         topUpPage.topUpAccount(sum, cardNumber);
         assertEquals(firstCardBalance + Integer.parseInt(sum), dashboardPage.getFirstCardBalance());
         assertEquals(secondCardBalance - Integer.parseInt(sum), dashboardPage.getSecondCardBalance());
@@ -41,7 +41,7 @@ public class MoneyTransferTest {
         int secondCardBalance = dashboardPage.getSecondCardBalance();
         var topUpPage = dashboardPage.secondTopUpButton();
         var cardNumber = DataHelper.getFirstCardNumber();
-        String sum = "30000";
+        String sum = "3000";
         topUpPage.topUpAccount(sum, cardNumber);
         assertEquals(firstCardBalance - Integer.parseInt(sum), dashboardPage.getFirstCardBalance());
         assertEquals(secondCardBalance + Integer.parseInt(sum), dashboardPage.getSecondCardBalance());
