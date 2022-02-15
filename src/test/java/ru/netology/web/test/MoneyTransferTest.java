@@ -58,9 +58,7 @@ public class MoneyTransferTest {
         var cardNumber = DataHelper.getSecondCardNumber();
         String sum = "20000";
         topUpPage.topUpAccount(sum, cardNumber);
-        var topUp = new TopUpPage();
-        var errorMessage = topUp.getErrorMessage();
-        assertTrue(errorMessage, String.valueOf(true));
+        topUpPage.getErrorMessage();
         assertEquals(firstCardBalance, dashboardPage.getFirstCardBalance());
         assertEquals(secondCardBalance, dashboardPage.getSecondCardBalance());
     }

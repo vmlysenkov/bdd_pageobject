@@ -12,7 +12,9 @@ public class TopUpPage {
     private SelenideElement from = $("[data-test-id=from] input");
     private SelenideElement button = $("[data-test-id=action-transfer]");
 
-    public TopUpPage() {amount.shouldBe(visible);}
+    public TopUpPage() {
+        amount.shouldBe(visible);
+    }
 
     public DashboardPage topUpAccount(String sum, DataHelper.CardNumber cardNumber) {
         amount.setValue(sum);
@@ -21,12 +23,8 @@ public class TopUpPage {
         return new DashboardPage();
     }
 
-    public boolean getErrorMessage() {
-        boolean result = false;
-        if ($(withText("Недостаточно средств. Пополните баланс.")).exists()) {
-            result = true;
-        }
-        return result;
+    public void getErrorMessage() {
+        $(withText("Недостаточно средств. Пополните баланс.")).shouldBe(visible);
     }
 
 
