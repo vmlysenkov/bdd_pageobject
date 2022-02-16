@@ -49,17 +49,17 @@ public class MoneyTransferTest {
         assertEquals(secondCardBalance + Integer.parseInt(sum), dashboardPage.getSecondCardBalance());
     }
 
-    @Test
-    void shouldNotTopUpFirstCard() {
-        var dashboardPage = new DashboardPage();
-        int firstCardBalance = dashboardPage.getFirstCardBalance();
-        int secondCardBalance = dashboardPage.getSecondCardBalance();
-        var topUpPage = dashboardPage.firstTopUpButton();
-        var cardNumber = DataHelper.getSecondCardNumber();
-        String sum = "20000";
-        topUpPage.topUpAccount(sum, cardNumber);
-        topUpPage.getErrorMessage();
-        assertEquals(firstCardBalance, dashboardPage.getFirstCardBalance());
-        assertEquals(secondCardBalance, dashboardPage.getSecondCardBalance());
-    }
+//    @Test
+//    void shouldNotTopUpFirstCard() {
+//        var dashboardPage = new DashboardPage();
+//        int firstCardBalance = dashboardPage.getFirstCardBalance();
+//        int secondCardBalance = dashboardPage.getSecondCardBalance();
+//        var topUpPage = dashboardPage.firstTopUpButton();
+//        var cardNumber = DataHelper.getSecondCardNumber();
+//        String sum = "20000";
+//        topUpPage.topUpAccount(sum, cardNumber);
+//        topUpPage.getErrorMessage();
+//        assertEquals(firstCardBalance, dashboardPage.getFirstCardBalance());
+//        assertEquals(secondCardBalance, dashboardPage.getSecondCardBalance());
+//    }
 }
